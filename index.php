@@ -15,4 +15,7 @@ if ($text === "/start") {
 	$telegram->sendMessage($content);
 	$content = array('chat_id' => $chat_id, "reply_markup" => $keyb, 'text' => "Sizga qanday yordam bera olaman?");
 	$telegram->sendMessage($content);
+} else if ($text === "🛈 Batafsil ma'lumot") {
+	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", 'parse_mode' => 'html');
+	$telegram->sendMessage($content);
 }
