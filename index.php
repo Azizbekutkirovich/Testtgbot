@@ -15,4 +15,17 @@ if ($text === "/start") {
 	$telegram->sendMessage($content);
 	$content = array('chat_id' => $chat_id, "reply_markup" => $keyb, 'text' => "Qanday ma'lumot kerak?");
 	$telegram->sendMessage($content);
+} else if ($text === "🛈 Batafsil ma'lumot") {
+	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html");
+	$telegram->sendMessage($content);
+} else if ($text === "📞 Bog'lanish uchun") {
+	$content = array('chat_id' => $chat_id, 'text' => "
+	📍 Адрес: Toshkent shahar Yangi hayot tumani Ibrat 2-tor ko'cha 38
+
+ 	📞 Телефон: +998(93)315-23-70
+
+ 	✉ Email: azizbek250607@gmail.com
+
+ 	🐙 GitHub: https://github.com/Azizbekutkirovich/");
+	$telegram->sendMessage($content);
 }
