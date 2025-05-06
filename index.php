@@ -8,8 +8,8 @@ $chat_id = $telegram->ChatID();
 $text = $telegram->Text();
 if ($text === "/start") {
 	$option = array(
-    array($telegram->buildKeyboardButton("Button 1")),
-    array($telegram->buildKeyboardButton("Button 2")));
+    array($telegram->buildKeyboardButton("🤖 Bot imkoniyatlari")),
+    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot")));
     $keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
 	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum. Men dasturchi Safarov Azizbek tomonidan ishlab chiqilgan botman!");
 	$telegram->sendMessage($content);
