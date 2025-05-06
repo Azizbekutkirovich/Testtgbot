@@ -28,4 +28,7 @@ if ($text === "/start") {
 
  	🐙 GitHub: https://github.com/Azizbekutkirovich/");
 	$telegram->sendMessage($content);
+} else if ($text === "🤖 Bot zakaz qilish") {
+	$content = array("chat_id" => $chat_id, "text" => "Sizga qanaqa bot kerak? Batafsil yozib qoldiring! Tez orada siz bilan bog'lanishadi!");
+	$telegram->sendMessage($content);
 }
