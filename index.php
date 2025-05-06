@@ -58,7 +58,11 @@ function contact() {
 
 function zakazBot() {
 	global $chat_id, $telegram;
-	$content = array("chat_id" => $chat_id, "text" => "Sizga qanaqa bot kerak? Batafsil yozib qoldiring! Tez orada siz bilan bog'lanishadi!");
+	$option = [
+		[$telegram->buildKeyboardButton("Raqam qoldirish", true)]
+	];
+	$keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
+	$content = array("chat_id" => $chat_id, "text" => "Sizga qanaqa bot kerak? Batafsil yozib va telefon raqamingizni yozib qoldiring! Tez orada siz bilan bog'lanishadi!");
 	$telegram->sendMessage($content);
 }
 
