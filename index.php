@@ -27,7 +27,7 @@ switch ($text) {
 		$data = $telegram->getData();
 		$telegram->sendMessage([
 			"chat_id" => $chat_id,
-			"text" => json_encode($data, JSON_PRETTY_PRINT)
+			"text" => $data
 		]);
 		break;
 }
