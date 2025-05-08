@@ -23,6 +23,13 @@ switch ($text) {
 	case "🤖 Bot zakaz qilish":
 		zakazBot();
 		break;
+	default:
+		$data = $telegram->getData();
+		$telegram->sendMessage([
+			"chat_id" => $chat_id,
+			"text" => json_encode($data, JSON_PRETTY_PRINT)
+		]);
+		break;
 }
 
 function start() {
