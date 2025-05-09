@@ -25,6 +25,9 @@ switch ($text) {
 	case "🤖 Bot zakaz qilish":
 		zakazBot();
 		break;
+	case "🔙 Ortga qaytish":
+		start();
+		break;
 	default:
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
 			$telegram->sendMessage([
