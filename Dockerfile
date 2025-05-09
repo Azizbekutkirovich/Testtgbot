@@ -1,8 +1,8 @@
-FROM php:8.2-cli
+FROM php:8.1-cli
 
-WORKDIR /app
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
 COPY . /app
+WORKDIR /app
 
-EXPOSE 80
-
-CMD ["php", "-S", "0.0.0.0:80", "index.php"]
+CMD ["php", "index.php"]
