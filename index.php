@@ -32,10 +32,13 @@ switch ($text) {
 		break;
 	default:
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
-
+			$userId = $message['from']['id'];
+			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
+			$query = $pdo->prepare("INSERT INTO test (id, name) VALUES (?, ?)");
+			$query->execute([$userId, $phoneNumber]);
 			$telegram->sendMessage([
 				"chat_id" => $chat_id,
-				"text" => json_encode($data, JSON_PRETTY_PRINT)
+				"text" => "Tez orada siz bilan bog'lanishadi!"
 			]);
 		}
 		break;
