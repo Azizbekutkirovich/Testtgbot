@@ -3,7 +3,6 @@
 require_once "Telegram.php";
 require_once "db.php";
 
-die("Tekshirish uchun");
 
 $telegram = new Telegram('7712252153:AAE9ZG7gCLWT3E3jJCnGOclp82-3OFjO2So');
 
