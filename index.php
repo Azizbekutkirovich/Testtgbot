@@ -4,8 +4,10 @@ include "Telegram.php";
 
 $telegram = new Telegram('7712252153:AAE9ZG7gCLWT3E3jJCnGOclp82-3OFjO2So');
 
-$chat_id = $telegram->ChatID();
-$text = $telegram->Text();
+$data = $telegram->getData();
+$message = $data['message'];
+$chat_id = $message['chat']['id'];
+$text = $message['text'];
 
 switch ($text) {
 	case "/start":
@@ -24,7 +26,6 @@ switch ($text) {
 		zakazBot();
 		break;
 	default:
-		$data = $telegram->getData();
 		$telegram->sendMessage([
 			"chat_id" => $chat_id,
 			"text" => json_encode($data, JSON_PRETTY_PRINT)
