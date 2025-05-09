@@ -5,6 +5,4 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 COPY . /app
 WORKDIR /app
 
-ENV PORT 10000
-
 CMD ["php", "index.php"]
