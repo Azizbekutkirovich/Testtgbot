@@ -51,7 +51,11 @@ function start() {
 
 function detail() {
 	global $chat_id, $telegram;
-	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html");
+	$option = [
+		[$telegram->buildKeyboardButton("🔙 Ortga qaytish")]
+	];
+	$keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
+	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
 
