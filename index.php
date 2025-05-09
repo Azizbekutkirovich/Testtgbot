@@ -35,7 +35,7 @@ switch ($text) {
 			$userId = $message['from']['id'];
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
 			$query = $pdo->prepare("INSERT INTO test (id, name) VALUES (?, ?)");
-			$query->execute([$userId, $phoneNumber]);
+			$query->execute([$userId, "test"]);
 			$telegram->sendMessage([
 				"chat_id" => $chat_id,
 				"text" => "Tez orada siz bilan bog'lanishadi!"
