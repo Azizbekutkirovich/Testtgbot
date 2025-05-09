@@ -13,8 +13,12 @@ $user = $parts['user'];
 $pass = $parts['pass'];
 $db   = ltrim($parts['path'], '/');
 
-$conn = mysqli_connect($host, $user, $pass, $db, $port);
+$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
 
-if (!$conn) {
-    die("MySQL ulanishda xatolik: " . mysqli_connect_error());
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+
+} catch (PDOException $e) {
+    echo "Xatolik: ".$e->getMessage();
+    exit;
 }
