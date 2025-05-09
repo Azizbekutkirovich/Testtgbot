@@ -26,10 +26,12 @@ switch ($text) {
 		zakazBot();
 		break;
 	default:
-		$telegram->sendMessage([
-			"chat_id" => $chat_id,
-			"text" => json_encode($data, JSON_PRETTY_PRINT)
-		]);
+		if (!empty($message['entities']) || !empty($message['contact'])) {
+			$telegram->sendMessage([
+				"chat_id" => $chat_id,
+				"text" => json_encode($data, JSON_PRETTY_PRINT)
+			]);
+		}
 		break;
 }
 
