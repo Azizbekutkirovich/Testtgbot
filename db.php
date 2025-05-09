@@ -2,6 +2,10 @@
 
 $url = getenv('MYSQL_URL');
 
+if (!$url) {
+    die("MYSQL_URL environment variable aniqlanmadi!");
+}
+
 $parts = parse_url($url);
 $host = $parts['host'];
 $port = $parts['port'];
@@ -9,11 +13,8 @@ $user = $parts['user'];
 $pass = $parts['pass'];
 $db   = ltrim($parts['path'], '/');
 
-$dsn = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+$conn = mysqli_connect($host, $user, $pass, $db, $port);
 
-try {
-    $pdo = new PDO($dsn, $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Ulanishda xatolik: " . $e->getMessage());
+if (!$conn) {
+    die("MySQL ulanishda xatolik: " . mysqli_connect_error());
 }
