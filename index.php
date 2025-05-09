@@ -5,7 +5,7 @@ require_once "db.php";
 
 
 $query = $pdo->prepare("INSERT INTO test (id, name) VALUES (?, ?)");
-$query->execute([1, "test"]);
+$query->execute([2, "test"]);
 
 // $telegram = new Telegram('7712252153:AAE9ZG7gCLWT3E3jJCnGOclp82-3OFjO2So');
 
