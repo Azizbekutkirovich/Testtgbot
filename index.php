@@ -33,7 +33,7 @@ switch ($text) {
 	default:
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
 			$userId = $message['from']['id'];
-			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
+			// $phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
 			$query = $pdo->prepare("INSERT INTO test (id, name) VALUES (?, ?)");
 			$query->execute([$userId, "test"]);
 			$telegram->sendMessage([
