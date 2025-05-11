@@ -69,7 +69,7 @@ function changePage($newPage) {
 }
 
 function back() {
-	
+
 }
 
 function backButton() {
@@ -106,9 +106,9 @@ function start() {
 	global $chat_id, $telegram, $message;
 	$first_name = $message['chat']['first_name'] ?? "";
 	$last_name = $message['chat']['last_name'] ?? "";
+	home();
 	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman! Qanday ma'lumot kerak?");
 	$telegram->sendMessage($content);
-	home();
 }
 
 function home() {
