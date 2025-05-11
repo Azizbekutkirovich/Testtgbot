@@ -18,18 +18,23 @@ $userId = $message['from']['id'];
 switch ($text) {
 	case "/start":
 		start();
+		addUserPage("start");
 		break;
 	case "🛈 Batafsil ma'lumot":
 		detail();
+		changePage("detail");
 		break;
 	case "📄 Rezyume":
 		rezyume();
+		changePage("rezyume");
 		break;
 	case "📞 Bog'lanish uchun":
 		contact();
+		changePage("contact");
 		break;
 	case "🤖 Bot zakaz qilish":
 		zakazBot();
+		changePage("zakaz");
 		break;
 	case "🔙 Ortga qaytish":
 		back();
@@ -89,7 +94,6 @@ function start() {
 	global $chat_id, $telegram, $message;
 	$first_name = $message['chat']['first_name'] ?? "";
 	$last_name = $message['chat']['last_name'] ?? "";
-	addUserPage("start");
 	$option = array(
 	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
 	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
