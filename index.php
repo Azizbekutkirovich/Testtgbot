@@ -13,6 +13,7 @@ $data = $telegram->getData();
 $message = $data['message'];
 $chat_id = $message['chat']['id'];
 $text = $message['text'];
+$userId = $message['from']['id'];
 
 switch ($text) {
 	case "/start":
@@ -31,14 +32,13 @@ switch ($text) {
 		zakazBot();
 		break;
 	case "🔙 Ortga qaytish":
-		start();
+		back();
 		break;
 	default:
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
-			$userId = $message['from']['id'];
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
 			$username = $message['chat']['username'];
-			if (!isZakaz($userId)) {
+			if (!isZakaz()) {
 				$query = $pdo->prepare("INSERT INTO zakaz (userId, phoneNumber, username) VALUES (?, ?, ?)");
 				$query->execute([$userId, $phoneNumber, $username]);
 				$telegram->sendMessage([
@@ -57,10 +57,39 @@ switch ($text) {
 		break;
 }
 
+function changePage($newPage) {
+	global $pdo, $userId;
+	$query = $pdo->prepare("UPDATE userPage SET page = ? WHERE userId = ?");
+	$query->execute([$newPage, $userId]);
+}
+
+function back() {
+
+}
+
+function addUserPage($page) {
+	global $pdo, $userId;
+	if (!issetUserPage()) {
+		$query = $pdo->prepare("INSERT INTO userPage (userId, page) VALUES (?, ?)");
+		$query->execute([$userId, $page]);
+	} else {
+		changePage($page);
+	}
+}
+
+function issetUserPage() {
+	global $pdo, $userId;
+	$query = $pdo->prepare("SELECT * FROM userPage WHERE userId = ?");
+	$query->execute([$userId]);
+	$row = $query->fetch(PDO::FETCH_ASSOC);
+	return $row !== false;
+}
+
 function start() {
 	global $chat_id, $telegram, $message;
 	$first_name = $message['chat']['first_name'] ?? "";
-	$last_name = $message['chat']['last_name'] ?? "";  
+	$last_name = $message['chat']['last_name'] ?? "";
+	addUserPage("start");
 	$option = array(
 	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
 	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
@@ -110,8 +139,8 @@ function rezyume() {
 	$telegram->sendMessage($content);
 }
 
-function isZakaz($userId) {
-	global $pdo;
+function isZakaz() {
+	global $pdo, $userId;
 	$query = $pdo->prepare("SELECT * FROM zakaz WHERE userId = ?");
 	$query->execute([$userId]);
 	$row = $query->fetch(PDO::FETCH_ASSOC);
