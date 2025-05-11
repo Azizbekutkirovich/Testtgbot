@@ -69,7 +69,19 @@ function changePage($newPage) {
 }
 
 function back() {
+	
+}
 
+function backButton() {
+	global $chat_id, $telegram;
+	$option = [
+		[$telegram->buildKeyboardButton("🔙 Ortga qaytish")]
+	];
+	$keyb = $telegram->buildKeyBoard($option, true, true);
+	$telegram->sendMessage([
+		"chat_id" => $chat_id,
+		"reply_markup" => $keyb
+	]);
 }
 
 function addUserPage($page) {
@@ -94,24 +106,26 @@ function start() {
 	global $chat_id, $telegram, $message;
 	$first_name = $message['chat']['first_name'] ?? "";
 	$last_name = $message['chat']['last_name'] ?? "";
+	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman! Qanday ma'lumot kerak?");
+	$telegram->sendMessage($content);
+	home();
+}
+
+function home() {
+	global $chat_id, $telegram;
 	$option = array(
 	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
 	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
     $keyb = $telegram->buildKeyBoard($option, true, true);
-	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman!");
-	$telegram->sendMessage($content);
-	$content = array('chat_id' => $chat_id, "reply_markup" => $keyb, 'text' => "Qanday ma'lumot kerak?");
+    $content = array('chat_id' => $chat_id, "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
 
 function detail() {
 	global $chat_id, $telegram;
-	$option = [
-		[$telegram->buildKeyboardButton("🔙 Ortga qaytish")]
-	];
-	$keyb = $telegram->buildKeyBoard($option, true, true);
-	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html", "reply_markup" => $keyb);
+	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html");
 	$telegram->sendMessage($content);
+	backButton();
 }
 
 function contact() {
@@ -125,6 +139,7 @@ function contact() {
 
 	 	🐙 GitHub: https://github.com/Azizbekutkirovich/");
 	$telegram->sendMessage($content);
+	backButton();
 }
 
 function zakazBot() {
@@ -135,12 +150,14 @@ function zakazBot() {
 	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array("chat_id" => $chat_id, "text" => "Telefon raqamingizni yozing", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
+	backButton();
 }
 
 function rezyume() {
 	global $chat_id, $telegram;
 	$content = array("chat_id" => $chat_id, "text" => "Rezyume tez orada qo'shiladi!");
 	$telegram->sendMessage($content);
+	backButton();
 }
 
 function isZakaz() {
