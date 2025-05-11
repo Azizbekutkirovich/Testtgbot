@@ -39,7 +39,7 @@ switch ($text) {
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
 			$username = $message['chat']['username'];
 			if (!isZakaz($userId)) {
-				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number, username) VALUES (?, ?)");
+				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number, username) VALUES (?, ?, ?)");
 				$query->execute([$userId, $phoneNumber, $username]);
 				$telegram->sendMessage([
 					"chat_id" => $chat_id,
