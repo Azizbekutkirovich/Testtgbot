@@ -4,7 +4,7 @@ require_once "Telegram.php";
 require_once "db.php";
 
 
-// $query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number) VALUES (?, ?)");
+// $query = $pdo->prepare("INSERT INTO zakaz (user_id, phone_Number) VALUES (?, ?)");
 // $query->execute([5667777776, "+998933152370"]);
 
 $telegram = new Telegram('7712252153:AAE9ZG7gCLWT3E3jJCnGOclp82-3OFjO2So');
@@ -39,14 +39,14 @@ switch ($text) {
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
 			$username = $message['chat']['username'];
 			if (!isZakaz($userId)) {
-				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number, username) VALUES (?, ?, ?)");
+				$query = $pdo->prepare("INSERT INTO zakaz (userId, phoneNumber, username) VALUES (?, ?, ?)");
 				$query->execute([$userId, $phoneNumber, $username]);
 				$telegram->sendMessage([
 					"chat_id" => $chat_id,
 					"text" => "Tez orada siz bilan bog'lanishadi!"
 				]);
 			} else {
-				$query = $pdo->prepare("UPDATE test2 SET phone_Number = ?, username = ? WHERE user_id = ?");
+				$query = $pdo->prepare("UPDATE zakaz SET phoneNumber = ?, username = ? WHERE userId = ?");
 				$query->execute([$phoneNumber, $username, $userId]);
 				$telegram->sendMessage([
 					"chat_id" => $chat_id,
@@ -112,7 +112,7 @@ function rezyume() {
 
 function isZakaz($userId) {
 	global $pdo;
-	$query = $pdo->prepare("SELECT * FROM test2 WHERE user_id = ?");
+	$query = $pdo->prepare("SELECT * FROM zakaz WHERE userId = ?");
 	$query->execute([$userId]);
 	$row = $query->fetch(PDO::FETCH_ASSOC);
 	return $row !== false;
