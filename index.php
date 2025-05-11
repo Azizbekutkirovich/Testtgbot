@@ -161,7 +161,6 @@ function zakazBot() {
 	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array("chat_id" => $chat_id, "text" => "Telefon raqamingizni yozing", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
-	backButton();
 }
 
 function rezyume() {
