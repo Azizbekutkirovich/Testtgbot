@@ -37,16 +37,17 @@ switch ($text) {
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
 			$userId = $message['from']['id'];
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
+			$username = $message['chat']['username'];
 			if (!isZakaz($userId)) {
-				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number) VALUES (?, ?)");
-				$query->execute([$userId, $phoneNumber]);
+				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number, username) VALUES (?, ?)");
+				$query->execute([$userId, $phoneNumber, $username]);
 				$telegram->sendMessage([
 					"chat_id" => $chat_id,
 					"text" => "Tez orada siz bilan bog'lanishadi!"
 				]);
 			} else {
-				$query = $pdo->prepare("UPDATE test2 SET phone_Number = ? WHERE user_id = ?");
-				$query->execute([$phoneNumber, $userId]);
+				$query = $pdo->prepare("UPDATE test2 SET phone_Number = ?, username = ? WHERE user_id = ?");
+				$query->execute([$phoneNumber, $username, $userId]);
 				$telegram->sendMessage([
 					"chat_id" => $chat_id,
 					"text" => "Tez orada siz bilan bog'lanishadi!"
