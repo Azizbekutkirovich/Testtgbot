@@ -106,18 +106,19 @@ function start() {
 	global $chat_id, $telegram, $message;
 	$first_name = $message['chat']['first_name'] ?? "";
 	$last_name = $message['chat']['last_name'] ?? "";
-	$option = array(
-	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
-	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
-    $keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman!");
 	$telegram->sendMessage($content);
-	$content = ["chat_id" => $chat_id, "text" => "Qanday ma'lumot kerak?", "reply_markup" => $keyb];
-	$telegram->sendMessage($content);
+	home();
 }
 
 function home() {
 	global $chat_id, $telegram;
+	$option = array(
+	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
+	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
+    $keyb = $telegram->buildKeyBoard($option, true, true);
+    $content = ["chat_id" => $chat_id, "text" => "Qanday ma'lumot kerak?", "reply_markup" => $keyb];
+	$telegram->sendMessage($content);
 }
 
 function detail() {
