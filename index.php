@@ -90,7 +90,7 @@ function zakazBot() {
 		[$telegram->buildKeyboardButton("Raqam qoldirish", true)]
 	];
 	$keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
-	$content = array("chat_id" => $chat_id, "text" => "Telefon raqamingizni yozib qoldiring! Tez orada siz bilan bog'lanishadi!", "reply_markup" => $keyb);
+	$content = array("chat_id" => $chat_id, "text" => "Telefon raqamingizni yozing", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
 
