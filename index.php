@@ -34,7 +34,7 @@ switch ($text) {
 		break;
 	case "🤖 Bot zakaz qilish":
 		zakazBot();
-		changePage("zakaz");
+		changePage("zakazBot");
 		break;
 	case "🔙 Ortga qaytish":
 		back();
@@ -68,8 +68,18 @@ function changePage($newPage) {
 	$query->execute([$newPage, $userId]);
 }
 
-function back() {
+function getUserPage() {
+	global $userId, $pdo;
+	$query = $pdo->prepare("SELECT page FROM userPage WHERE userId = ?");
+	$query->execute([$userId]);
+	$data = $query->fetch(PDO::FETCH_ASSOC);
+	return $data['page'];
+}
 
+function back() {
+	$user_page = getUserPage();
+	home();
+	changePage("start");
 }
 
 function backButton() {
@@ -80,7 +90,7 @@ function backButton() {
 	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$telegram->sendMessage([
 		"chat_id" => $chat_id,
-		"text" => "Ortga qaytish uchun quyidagi tugmani bosing",
+		"text" => "Ortga qaytish uchun pastdagi tugmani bosing",
 		"reply_markup" => $keyb
 	]);
 }
