@@ -112,7 +112,7 @@ function start() {
     $keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman!");
 	$telegram->sendMessage($content);
-	$content = ["chat_id" => $chat_id, "text" => "Qanday ma'lumot kerak?", "reply_markup" => $keyb];
+	$content = ["chat_id" => $chat_id, "reply_markup" => $keyb];
 	$telegram->sendMessage($content);
 }
 
