@@ -80,6 +80,7 @@ function backButton() {
 	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$telegram->sendMessage([
 		"chat_id" => $chat_id,
+		"text" => "Ortga qaytish uchun quyidagi tugmani bosing",
 		"reply_markup" => $keyb
 	]);
 }
