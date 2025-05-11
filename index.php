@@ -37,12 +37,21 @@ switch ($text) {
 		if ((!empty($message['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($message['contact'])) {
 			$userId = $message['from']['id'];
 			$phoneNumber = $message['contact']['phone_number'] ?? $message['text'];
-			$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number) VALUES (?, ?)");
-			$query->execute([$userId, $phoneNumber]);
-			$telegram->sendMessage([
-				"chat_id" => $chat_id,
-				"text" => "Tez orada siz bilan bog'lanishadi!"
-			]);
+			if (!isZakaz($userId)) {
+				$query = $pdo->prepare("INSERT INTO test2 (user_id, phone_Number) VALUES (?, ?)");
+				$query->execute([$userId, $phoneNumber]);
+				$telegram->sendMessage([
+					"chat_id" => $chat_id,
+					"text" => "Tez orada siz bilan bog'lanishadi!"
+				]);
+			} else {
+				$query = $pdo->prepare("UPDATE test2 SET phone_Number = ? WHERE user_id = ?");
+				$query->execute([$phoneNumber, $userId]);
+				$telegram->sendMessage([
+					"chat_id" => $chat_id,
+					"text" => "Tez orada siz bilan bog'lanishadi!"
+				]);
+			}
 		}
 		break;
 }
@@ -54,7 +63,7 @@ function start() {
 	$option = array(
 	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
 	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
-    $keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
+    $keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman!");
 	$telegram->sendMessage($content);
 	$content = array('chat_id' => $chat_id, "reply_markup" => $keyb, 'text' => "Qanday ma'lumot kerak?");
@@ -66,7 +75,7 @@ function detail() {
 	$option = [
 		[$telegram->buildKeyboardButton("🔙 Ortga qaytish")]
 	];
-	$keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
+	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array('chat_id' => $chat_id, 'text' => "Batafsil ma'lumot uchun havola: <a href='https://telegra.ph/Biz-haqimizda-05-06'>Havola</a>", "parse_mode" => "html", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
@@ -89,7 +98,7 @@ function zakazBot() {
 	$option = [
 		[$telegram->buildKeyboardButton("Raqam qoldirish", true)]
 	];
-	$keyb = $telegram->buildKeyBoard($option, $onetime = true, $resize = true);
+	$keyb = $telegram->buildKeyBoard($option, true, true);
 	$content = array("chat_id" => $chat_id, "text" => "Telefon raqamingizni yozing", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
@@ -98,4 +107,12 @@ function rezyume() {
 	global $chat_id, $telegram;
 	$content = array("chat_id" => $chat_id, "text" => "Rezyume tez orada qo'shiladi!");
 	$telegram->sendMessage($content);
+}
+
+function isZakaz($userId) {
+	global $pdo;
+	$query = $pdo->prepare("SELECT * FROM test2 WHERE user_id = ?");
+	$query->execute([$userId]);
+	$row = $query->fetch(PDO::FETCH_ASSOC);
+	return $row !== false;
 }
