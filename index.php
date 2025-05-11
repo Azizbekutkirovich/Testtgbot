@@ -110,9 +110,7 @@ function start() {
 	    array($telegram->buildKeyboardButton("🛈 Batafsil ma'lumot"), $telegram->buildKeyboardButton("📄 Rezyume")),
 	    array($telegram->buildKeyboardButton("📞 Bog'lanish uchun"), $telegram->buildKeyboardButton("🤖 Bot zakaz qilish")));
     $keyb = $telegram->buildKeyBoard($option, true, true);
-    $content = array('chat_id' => $chat_id, "reply_markup" => $keyb);
-	$telegram->sendMessage($content);
-	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman! Qanday ma'lumot kerak?");
+	$content = array('chat_id' => $chat_id, 'text' => "Assalomu aleykum $last_name $first_name. Men dasturchi Safarov Azizbek haqida ma'lumot bera olaman! Qanday ma'lumot kerak?", "reply_markup" => $keyb);
 	$telegram->sendMessage($content);
 }
 
