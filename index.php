@@ -10,6 +10,8 @@ $message = $data['message'];
 $chat_id = $message['chat']['id'];
 $text = $message['text'];
 $userId = $message['from']['id'];
+$firstname = $message['from']['first_name'] ?? "";
+$lastname = $message['from']['last_name'] ?? "";
 
 if ($text == "/start") {
 	$content = [
