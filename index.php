@@ -11,7 +11,7 @@ $chat_id = $message['chat']['id'];
 $text = $message['text'];
 $userId = $message['from']['id'];
 
-if ($text === "/start") {
+if ($text == "/start") {
 	$content = [
 		"chat_id" => $chat_id,
 		"text" => json_encode($data, JSON_PRETTY_PRINT)
