@@ -16,7 +16,7 @@ $lastname = $message['from']['last_name'] ?? "";
 if ($text == "/start") {
 	$content = [
 		"chat_id" => $chat_id,
-		"text" => json_encode($data, JSON_PRETTY_PRINT)
+		"text" => "Assalomu aleykum $lastname $firstname! Bu bot test rejimida"
 	];
 	$telegram->sendMessage($content);
 }
