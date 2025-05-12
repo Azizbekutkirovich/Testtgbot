@@ -17,11 +17,7 @@ $userId = $message['from']['id'];
 
 switch ($text) {
 	case "/start":
-		$telegram->sendMessage([
-			"chat_id" => $chat_id,
-			"text" => json_encode($data, JSON_PRETTY_PRINT)
-		]);
-		// start();
+		start();
 		addUserPage("start");
 		break;
 	case "🛈 Batafsil ma'lumot":
