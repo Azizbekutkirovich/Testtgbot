@@ -1,9 +1,9 @@
 <?php
 
 require_once "Telegram.php";
-require_once "db.php";
+// require_once "db.php";
 
-$telegram = new Telegram('7712252153:AAE9ZG7gCLWT3E3jJCnGOclp82-3OFjO2So');
+$telegram = new Telegram('7712252153:AAF9AXpyVhgviZtcEgtXs8a3ON3kf9Qlnwc');
 
 $data = $telegram->getData();
 $message = $data['message'];
