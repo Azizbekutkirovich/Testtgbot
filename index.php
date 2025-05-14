@@ -25,7 +25,7 @@ switch($page) {
 	case "home":
 		if ($text === "ℹ️ Button 1") {
 			$pages->button1();
-		} elseif ($text === "ℹ️ Button 2") {
+		} else if ($text === "ℹ️ Button 2") {
 			$pages->button2();
 		} else {
 			$telegram->sendMessage([
