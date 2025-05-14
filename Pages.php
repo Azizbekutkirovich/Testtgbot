@@ -14,7 +14,7 @@ class Pages
 
 	public function home() {
 		$options = [
-			[$this->telegram->buildKeyboardButton("Button 1"), $this->telegram->buildKeyboardButton("Button 2")]
+			[$this->telegram->buildKeyboardButton("ℹ️ Button 1"), $this->telegram->buildKeyboardButton("ℹ️ Button 2")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$firstname = $this->data['message']['from']['first_name'];

@@ -1,6 +1,7 @@
 <?php
 
 require_once "Telegram.php";
+require_once "db.php";
 require_once "Pages.php";
 
 $telegram = new Telegram('7721368494:AAGye3pqlYFFpe3epO4ODr_3TO5sk6dbvwg');
