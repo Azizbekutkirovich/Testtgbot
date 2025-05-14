@@ -20,8 +20,9 @@ class Pages
 		$firstname = $this->data['message']['from']['first_name'];
 		$lastname = $this->data['message']['from']['last_name'];
 		$this->telegram->sendMessage([
-			"chat_id" => $chat_id,
-			"text" => "Assalomu aleykum $lastname $firstname! Bu bot test rejimida" 
+			"chat_id" => $this->chat_id,
+			"text" => "Assalomu aleykum $lastname $firstname! Bu bot test rejimida",
+			"reply_markup" => $keyb
 		]);
 	}
 }
