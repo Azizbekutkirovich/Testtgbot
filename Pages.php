@@ -22,7 +22,7 @@ class Pages
 		$options = [
 			[$this->telegram->buildKeyboardButton("ℹ️ Button 1"), $this->telegram->buildKeyboardButton("ℹ️ Button 2")]
 		];
-		$this->functions->addPage($this->user_id, "home");
+		$this->functions->setPage($this->user_id, "home");
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$firstname = $this->data['message']['from']['first_name'];
 		$lastname = $this->data['message']['from']['last_name'];
