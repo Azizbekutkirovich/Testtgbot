@@ -18,20 +18,19 @@ $pages = new Pages($telegram);
 
 if ($text == "/start") {
 	$pages->home();
-}
-
-$page = $pages->getPage($user_id);
-switch($page) {
-	case "home":
-		if ($text === "ℹ️ Button 1") {
-			$pages->button1();
-		} else if ($text === "ℹ️ Button 2") {
-			$pages->button2();
-		} else {
-			$telegram->sendMessage([
-				"chat_id" => $data['message']['chat']['id'],
-				"text" => "Iltimos pastdagi tugmalardan birini tanlang!"
-			]);
-		}
-		break;
+} else {
+	switch($pages->getPage($user_id)) {
+		case "home":
+			if ($text === "ℹ️ Button 1") {
+				$pages->button1();
+			} else if ($text === "ℹ️ Button 2") {
+				$pages->button2();
+			} else {
+				$telegram->sendMessage([
+					"chat_id" => $data['message']['chat']['id'],
+					"text" => "Iltimos pastdagi tugmalardan birini tanlang!"
+				]);
+			}
+			break;
+	}
 }
