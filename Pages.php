@@ -16,7 +16,7 @@ class Pages
 		$options = [
 			[$this->telegram->buildKeyboardButton("Button 1"), $this->telegram->buildKeyboardButton("Button 2")]
 		];
-		$keyb = $this->telegram->buildKeyboard($options, true, true);
+		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$firstname = $this->data['message']['from']['first_name'];
 		$lastname = $this->data['message']['from']['last_name'];
 		$this->telegram->sendMessage([
