@@ -10,6 +10,7 @@ class Pages extends Functions
 	private $user_id;
 
 	public function __construct(Telegram $telegram) {
+		parent::__construct();
 		$this->telegram = $telegram;
 		$this->data = $telegram->getData();
 		$this->chat_id = $this->data['message']['chat']['id'];
@@ -34,9 +35,9 @@ class Pages extends Functions
 	public function button1() {
 		$this->setPage($this->user_id, "button1");
 		$options = [
-			[$this->telegram->buildKeyboardButton("Value 1")]
-			[$this->telegram->buildKeyboardButton("Value 2")]
-			[$this->telegram->buildKeyboardButton("Value 3")]
+			[$this->telegram->buildKeyboardButton("Value 1")],
+			[$this->telegram->buildKeyboardButton("Value 2")],
+			[$this->telegram->buildKeyboardButton("Value 3")],
 			[$this->telegram->buildKeyboardButton("Value 4")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
