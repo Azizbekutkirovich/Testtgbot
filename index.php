@@ -32,9 +32,10 @@ if ($text == "/start") {
 	$pages->start();
 } else {
 	$userPage = $pages->getPage($user_id);
-	if (array_key_exists($text, $arr_pages[$userPage])) {
-		$pages->{$arr_pages[$userPage][$text]}();
+	if (isset($arr_pages[$userPage]) && array_key_exists($text, $arr_pages[$userPage])) {
+	    $pages->{$arr_pages[$userPage][$text]}();
 	} else {
-		$pages->chooseButtons();
+	    $pages->chooseButtons();
 	}
+
 }
