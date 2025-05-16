@@ -26,4 +26,13 @@ class Functions
 		$data = $query->fetch(PDO::FETCH_ASSOC);
 		return $data['page'];
 	}
+
+	public function back($page) {
+		switch ($page) {
+			case "button1":
+			case "button2":
+				$this->home();
+				break;
+		}
+	}
 }
