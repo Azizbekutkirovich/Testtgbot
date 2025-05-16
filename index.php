@@ -19,7 +19,8 @@ $pages = new Pages($telegram);
 if ($text == "/start") {
 	$pages->home();
 } else {
-	switch($pages->getPage($user_id)) {
+	$userPage = $pages->getPage($user_id);
+	switch($userPage) {
 		case "home":
 			if ($text === "ℹ️ Button 1") {
 				$pages->button1();
@@ -37,7 +38,7 @@ if ($text == "/start") {
 			if (in_array($text, $nextPages)) {
 
 			} else if ($text === "🔙 Ortga qaytish") {
-				$pages->back();
+				$pages->back($userPage);
 			}
 			break;
 		case "button2":
