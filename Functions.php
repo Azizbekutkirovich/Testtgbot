@@ -33,6 +33,9 @@ class Functions
 			case "button2":
 				$this->home();
 				break;
+			case "getPhoneNumber":
+				$this->button1();
+				break;
 		}
 	}
 }

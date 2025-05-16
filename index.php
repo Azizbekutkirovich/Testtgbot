@@ -25,7 +25,7 @@ $arr_pages = [
 		"Value 1" => "getPhoneNumber",
 		"Value 2" => "getPhoneNumber",
 		"Value 3" => "getPhoneNumber"
-	]
+	],
 ];
 
 if ($text == "/start") {
@@ -39,5 +39,4 @@ if ($text == "/start") {
 	} else {
 	    $pages->chooseButtons();
 	}
-
 }
