@@ -16,31 +16,25 @@ $pages = new Pages($telegram);
 // $firstname = $message['from']['first_name'] ?? "";
 // $lastname = $message['from']['last_name'] ?? "";
 
+$arr_pages = [
+	"home" => [
+		"ℹ️ Button 1" => "button1",
+		"ℹ️ Button 2" => "button2"
+	],
+	"button1" => [
+		"Value 1" => "zakaz",
+		"Value 2" => "zakaz",
+		"Value 3" => "zakaz"
+	]
+];
+
 if ($text == "/start") {
 	$pages->start();
 } else {
 	$userPage = $pages->getPage($user_id);
-	switch($userPage) {
-		case "home":
-			if ($text === "ℹ️ Button 1") {
-				$pages->button1();
-			} else if ($text === "ℹ️ Button 2") {
-				$pages->button2();
-			} else {
-				$pages->chooseButtons();
-			}
-			break;
-		case "button1":
-			$nextPages = ["Value 1", "Value 2", "Value 3"];
-			if (in_array($text, $nextPages)) {
-
-			} else if ($text === "🔙 Ortga qaytish") {
-				$pages->back($userPage);
-			} else {
-				$pages->chooseButtons();
-			}
-			break;
-		case "button2":
-
+	if (isset($arr_pages[$userPage][$text])) {
+		$pages->{$arr_pages[$userPage][$text]}();
+	} else {
+		$pages->chooseButtons();
 	}
 }
