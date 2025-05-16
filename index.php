@@ -17,7 +17,7 @@ $pages = new Pages($telegram);
 // $lastname = $message['from']['last_name'] ?? "";
 
 if ($text == "/start") {
-	$pages->home();
+	$pages->start();
 } else {
 	$userPage = $pages->getPage($user_id);
 	switch($userPage) {

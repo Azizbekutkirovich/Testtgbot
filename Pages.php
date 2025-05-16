@@ -17,17 +17,25 @@ class Pages extends Functions
 		$this->user_id = $this->data['message']['from']['id'];
 	}
 
+	public function start() {
+		$firstname = $this->data['message']['from']['first_name'];
+		$lastname = $this->data['message']['from']['last_name'];
+		$this->telegram->sendMessage([
+			"chat_id" => $this->chat_id,
+			"text" => "Assalomu aleykum $lastname $firstname! Bu bot test rejimida"
+		]);
+		$this->home();
+	}
+
 	public function home() {
 		$this->setPage($this->user_id, "home");
 		$options = [
 			[$this->telegram->buildKeyboardButton("ℹ️ Button 1"), $this->telegram->buildKeyboardButton("ℹ️ Button 2")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
-		$firstname = $this->data['message']['from']['first_name'];
-		$lastname = $this->data['message']['from']['last_name'];
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
-			"text" => "Assalomu aleykum $lastname $firstname! Bu bot test rejimida",
+			"text" => "Pastdagi tugmalardan birini tanlang!",
 			"reply_markup" => $keyb
 		]);
 	}
