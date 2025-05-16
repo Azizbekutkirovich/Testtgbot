@@ -38,7 +38,6 @@ class Pages extends Functions
 			[$this->telegram->buildKeyboardButton("Value 1")],
 			[$this->telegram->buildKeyboardButton("Value 2")],
 			[$this->telegram->buildKeyboardButton("Value 3")],
-			[$this->telegram->buildKeyboardButton("Value 4")],
 			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
@@ -50,6 +49,6 @@ class Pages extends Functions
 	}
 
 	public function button2() {
-		
+
 	}
 }
