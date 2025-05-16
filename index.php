@@ -27,10 +27,7 @@ if ($text == "/start") {
 			} else if ($text === "ℹ️ Button 2") {
 				$pages->button2();
 			} else {
-				$telegram->sendMessage([
-					"chat_id" => $data['message']['chat']['id'],
-					"text" => "Iltimos pastdagi tugmalardan birini tanlang!"
-				]);
+				$pages->chooseButtons();
 			}
 			break;
 		case "button1":
@@ -39,6 +36,8 @@ if ($text == "/start") {
 
 			} else if ($text === "🔙 Ortga qaytish") {
 				$pages->back($userPage);
+			} else {
+				$pages->chooseButtons();
 			}
 			break;
 		case "button2":
