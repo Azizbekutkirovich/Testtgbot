@@ -22,9 +22,9 @@ $arr_pages = [
 		"ℹ️ Button 2" => "button2"
 	],
 	"button1" => [
-		"Value 1" => "zakaz",
-		"Value 2" => "zakaz",
-		"Value 3" => "zakaz"
+		"Value 1" => "getPhoneNumber",
+		"Value 2" => "getPhoneNumber",
+		"Value 3" => "getPhoneNumber"
 	]
 ];
 

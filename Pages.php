@@ -60,6 +60,20 @@ class Pages extends Functions
 
 	}
 
+	public function getPhoneNumber() {
+		$this->setPage($this->user_id, "getPhoneNumber");
+		$options = [
+			[$this->telegram->buildKeyboardButton("Raqam qoldirish", true)],
+			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]
+		];
+		$keyb = $this->telegram->buildKeyBoard($options, true, true);
+		$this->telegram->sendMessage([
+			"chat_id" => $this->chat_id,
+			"text" => "Telefon raqamingizni yozing",
+			"reply_markup" => $keyb
+		]);	
+	}
+
 	public function chooseButtons() {
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
