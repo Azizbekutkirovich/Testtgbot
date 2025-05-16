@@ -63,7 +63,7 @@ class Pages extends Functions
 	public function chooseButtons() {
 		$this->telegram->sendMessage([
 			"chat_id" -> $this->chat_id,
-			"text" => "Iltimos pastdagi tugmalardan birini tanlang!"
+			"text" => "⚠️ Noto‘g‘ri buyruq. Tugmalardan foydalaning."
 		]);
 	}
 }
