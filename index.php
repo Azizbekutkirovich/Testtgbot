@@ -33,9 +33,14 @@ if ($text == "/start") {
 			}
 			break;
 		case "button1":
+			$nextPages = ["Value 1", "Value 2", "Value 3"];
+			if (in_array($text, $nextPages)) {
 
+			} else if ($text === "🔙 Ortga qaytish") {
+				$pages->back();
+			}
 			break;
 		case "button2":
-			
+
 	}
 }
