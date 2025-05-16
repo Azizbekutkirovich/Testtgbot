@@ -32,5 +32,10 @@ if ($text == "/start") {
 				]);
 			}
 			break;
+		case "button1":
+
+			break;
+		case "button2":
+			
 	}
 }
