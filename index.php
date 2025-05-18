@@ -24,7 +24,10 @@ $arr_pages = [
 	"button1" => [
 		"Value 1" => "getPhoneNumber",
 		"Value 2" => "getPhoneNumber",
-		"Value 3" => "getPhoneNumber"
+		"Value 3" => [
+			"method" => "getPhoneNumber",
+			"arg" => "Value 3"
+		]
 	],
 ];
 
@@ -32,6 +35,9 @@ if ($text == "/start") {
 	$pages->start();
 } else {
 	$userPage = $pages->getPage($user_id);
+	if ($userPage === "getPhoneNumber") {
+		$pages->savePhoneNumber($text);
+	}
 	if (array_key_exists($text, $arr_pages[$userPage])) {
 	    $pages->{$arr_pages[$userPage][$text]}();
 	} else if ($text === "🔙 Ortga qaytish") {
