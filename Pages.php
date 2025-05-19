@@ -7,17 +7,18 @@ class Pages extends Functions
 	private $telegram;
 	private $data;
 	private $chat_id;
-	private $user_id;
+	private $telegram_id;
 
 	public function __construct(Telegram $telegram) {
 		parent::__construct();
 		$this->telegram = $telegram;
 		$this->data = $telegram->getData();
 		$this->chat_id = $this->data['message']['chat']['id'];
-		$this->user_id = $this->data['message']['from']['id'];
+		$this->telegram_id = $this->data['message']['from']['id'];
 	}
 
 	public function start() {
+		$this->addNewUser($this->telegram_id);
 		$firstname = $this->data['message']['from']['first_name'];
 		$lastname = $this->data['message']['from']['last_name'];
 		$this->telegram->sendMessage([
@@ -28,7 +29,7 @@ class Pages extends Functions
 	}
 
 	public function home() {
-		$this->setPage($this->user_id, "home");
+		$this->setPage($this->telegram_id, "home");
 		$options = [
 			[$this->telegram->buildKeyboardButton("ℹ️ Button 1"), $this->telegram->buildKeyboardButton("ℹ️ Button 2")]
 		];
@@ -41,7 +42,7 @@ class Pages extends Functions
 	}
 
 	public function button1() {
-		$this->setPage($this->user_id, "button1");
+		$this->setPage($this->telegram_id, "button1");
 		$options = [
 			[$this->telegram->buildKeyboardButton("Value 1")],
 			[$this->telegram->buildKeyboardButton("Value 2")],
@@ -60,8 +61,8 @@ class Pages extends Functions
 
 	}
 
-	public function getPhoneNumber() {
-		$this->setPage($this->user_id, "getPhoneNumber");
+	public function getPhoneNumber($value) {
+		$this->setPage($this->telegram_id, "getPhoneNumber");
 		$options = [
 			[$this->telegram->buildKeyboardButton("Raqam qoldirish", true)],
 			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]

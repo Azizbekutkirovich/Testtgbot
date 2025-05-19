@@ -11,8 +11,14 @@ class Functions
 		$this->db = $pdo;
 	}
 
-	public function setPage($user_id, $page) {
-		 $query = $this->db->prepare("
+	public function addNewUser($telegram_id) {
+		$query = $this->db->prepare("INSERT IGNORE INTO users (telegram_id) VALUES (?)");
+		$query->execute([$telegram_id]);
+	}
+
+	public function setPage($telegram_id, $page) {
+		$user_id = $this->getUserId($telegram_id);
+		$query = $this->db->prepare("
 	        INSERT INTO userPage (user_id, page)
 	        VALUES (?, ?)
 	        ON DUPLICATE KEY UPDATE page = VALUES(page)
@@ -37,5 +43,12 @@ class Functions
 				$this->button1();
 				break;
 		}
+	}
+
+	private function getUserId($telegram_id) {
+		$query = $this->db->prepare("SELECT id FROM users WHERE telegram_id = ?");
+		$query->execute([$telegram_id]);
+		$data = $query->fetch(PDO::FETCH_ASSOC);
+		return $data['id'];
 	}
 }
