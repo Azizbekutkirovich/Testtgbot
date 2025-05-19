@@ -71,14 +71,4 @@ if ($text == "/start") {
 	} else {
 		$pages->chooseButtons();
 	}
-	// if ($userPage === "getPhoneNumber") {
-	// 	$pages->savePhoneNumber($text);
-	// }
-	// if (array_key_exists($text, $arr_pages[$userPage])) {
-	//     $pages->{$arr_pages[$userPage][$text]}();
-	// } else if ($text === "🔙 Ortga qaytish") {
-	// 	$pages->back($userPage);
-	// } else {
-	//     $pages->chooseButtons();
-	// }
 }

@@ -63,6 +63,7 @@ class Pages extends Functions
 
 	public function getPhoneNumber($value) {
 		$this->setPage($this->telegram_id, "getPhoneNumber");
+		$this->saveUserValue($this->telegram_id, $value);
 		$options = [
 			[$this->telegram->buildKeyboardButton("Raqam qoldirish", true)],
 			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]

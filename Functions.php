@@ -52,4 +52,12 @@ class Functions
 		$data = $query->fetch(PDO::FETCH_ASSOC);
 		return $data['id'];
 	}
+
+	public function saveUserValue($telegram_id, $value) {
+		$user_id = $this->getUserId($telegram_id);
+		$query = $this->db->prepare("INSERT INTO userValue (user_id, value)
+	        VALUES (?, ?)
+	        ON DUPLICATE KEY UPDATE value = VALUES(value)");
+		$query->execute([$user_id, $value]);
+	}
 }
