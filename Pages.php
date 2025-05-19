@@ -76,10 +76,25 @@ class Pages extends Functions
 		]);	
 	}
 
+	public function userPhoneNumber() {
+		if ($this->isPhoneNumber()) {
+			$phone_number = $this->data['message']['contact']['phone_number'] ?? $this->data['message']['text'];
+			
+		}
+	}
+
 	public function chooseButtons() {
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
 			"text" => "⚠️ Noto‘g‘ri buyruq. Tugmalardan foydalaning."
 		]);
+	}
+
+	private function isPhoneNumber() {
+		if (!empty($this->data['message']['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($this->data['message']['contact']) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
