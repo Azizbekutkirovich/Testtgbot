@@ -26,7 +26,8 @@ class Functions
 	    $query->execute([$user_id, $page]);
 	}
 
-	public function getPage($user_id) {
+	public function getPage($telegram_id) {
+		$user_id = $this->getUserId($telegram_id);
 		$query = $this->db->prepare("SELECT page FROM userPage WHERE user_id = ?");
 		$query->execute([$user_id]);
 		$data = $query->fetch(PDO::FETCH_ASSOC);
