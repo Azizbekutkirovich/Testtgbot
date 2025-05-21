@@ -31,6 +31,18 @@ $pages = new Pages($telegram);
 // 	],
 // ];
 
+$zakaz_page_functions = [];
+
+$products = $pages->getProducts();
+
+foreach ($products as $product) {
+    $key = $product['product_name']." ".$product['price'];
+    $zakaz_page_functions[$key] = [
+        "method" => "placeOrder",
+        "arg" => $product['id']
+    ];
+}
+
 $bot_pages = [
 	"home" => [
 		"ℹ️ Batafsil ma'lumot" => [
@@ -45,15 +57,7 @@ $bot_pages = [
 	'detail' => [
 		
 	],
-	'zakaz' => [
-		
-	],
-	"getPhoneNumber" => [
-		"$text" => [
-			"method" => "userPhoneNumber",
-			"arg" => ""
-		]
-	]
+	'zakaz' => $zakaz_page_functions
 ];
 
 if ($text == "/start") {
