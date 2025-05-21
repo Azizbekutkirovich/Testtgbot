@@ -91,7 +91,7 @@ class Pages extends Functions
 	}
 
 	private function isPhoneNumber() {
-		if (!empty($this->data['message']['entities']) && $message['entities'][0]['type'] === "phone_number") || !empty($this->data['message']['contact']) {
+		if (!empty($this->data['message']['entities']) && $this->data['message']['entities'][0]['type'] === "phone_number") || !empty($this->data['message']['contact']) {
 			return true;
 		} else {
 			return false;
