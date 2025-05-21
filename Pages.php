@@ -18,7 +18,7 @@ class Pages extends Functions
 	}
 
 	public function start() {
-		$this->addNewUser($this->telegram_id);
+		$this->addNewUser($this->telegram_id, $this->data['message']['from']['username']);
 		$firstname = $this->data['message']['from']['first_name'];
 		$lastname = $this->data['message']['from']['last_name'];
 		$this->telegram->sendMessage([

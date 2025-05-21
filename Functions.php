@@ -11,9 +11,9 @@ class Functions
 		$this->db = $pdo;
 	}
 
-	public function addNewUser($telegram_id) {
-		$query = $this->db->prepare("INSERT IGNORE INTO users (telegram_id) VALUES (?)");
-		$query->execute([$telegram_id]);
+	public function addNewUser($telegram_id, $username) {
+		$query = $this->db->prepare("INSERT IGNORE INTO users (telegram_id, username) VALUES (?, ?)");
+		$query->execute([$telegram_id, $username]);
 	}
 
 	public function setPage($telegram_id, $page) {
