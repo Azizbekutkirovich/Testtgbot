@@ -45,6 +45,9 @@ $bot_pages = [
 	'detail' => [
 		
 	],
+	'zakaz' => [
+		
+	],
 	"getPhoneNumber" => [
 		"$text" => [
 			"method" => "userPhoneNumber",
