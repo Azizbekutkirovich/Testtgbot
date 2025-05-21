@@ -46,9 +46,6 @@ class Functions
 			case "zakaz":
 				$this->home();
 				break;
-			case "getPhoneNumber":
-				$this->button1();
-				break;
 		}
 	}
 

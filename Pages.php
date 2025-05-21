@@ -54,7 +54,7 @@ class Pages extends Functions
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
 			"text" => "Ortga qaytish uchun ortga qaytish tugmasini bosing!",
-			"reply_markup" => $keyb			
+			"reply_markup" => $keyb
 		]);
 	}
 
@@ -72,21 +72,6 @@ class Pages extends Functions
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
 			"text" => "Mahsulotlardan birini tanlang va buyurtma berish uchun o'sha mahsulot ustiga bosing!",
-			"reply_markup" => $keyb
-		]);
-	}
-
-	public function getPhoneNumber($value) {
-		$this->setPage($this->telegram_id, "getPhoneNumber");
-		$this->saveUserValue($this->telegram_id, $value);
-		$options = [
-			[$this->telegram->buildKeyboardButton("Raqam qoldirish", true)],
-			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]
-		];
-		$keyb = $this->telegram->buildKeyBoard($options, true, true);
-		$this->telegram->sendMessage([
-			"chat_id" => $this->chat_id,
-			"text" => "Telefon raqamingizni yozing",
 			"reply_markup" => $keyb
 		]);
 	}
