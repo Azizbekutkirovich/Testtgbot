@@ -33,27 +33,13 @@ $pages = new Pages($telegram);
 
 $bot_pages = [
 	"home" => [
-		"ℹ️ Button 1" => [
-			"method" => "button1",
+		"ℹ️ Batafsil ma'lumot" => [
+			"method" => "detail",
 			"arg" => ""
 		],
-		"ℹ️ Button 2" => [
+		"🛒 Buyurtma berish" => [
 			"method" => "button2",
 			"arg" => ""
-		]
-	],
-	"button1" => [
-		"Value 1" => [
-			"method" => "getPhoneNumber",
-			"arg" => "value1"
-		],
-		"Value 2" => [
-			"method" => "getPhoneNumber",
-			"arg" => "value2"
-		],
-		"Value 3" => [
-			"method" => "getPhoneNumber",
-			"arg" => "value3"
 		]
 	],
 	"getPhoneNumber" => [

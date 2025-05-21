@@ -31,7 +31,7 @@ class Pages extends Functions
 	public function home() {
 		$this->setPage($this->telegram_id, "home");
 		$options = [
-			[$this->telegram->buildKeyboardButton("ℹ️ Button 1"), $this->telegram->buildKeyboardButton("ℹ️ Button 2")]
+			[$this->telegram->buildKeyboardButton("ℹ️ Batafsil ma'lumot"), $this->telegram->buildKeyboardButton("🛒 Buyurtma berish")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$this->telegram->sendMessage([
@@ -41,19 +41,20 @@ class Pages extends Functions
 		]);
 	}
 
-	public function button1() {
-		$this->setPage($this->telegram_id, "button1");
+	public function detail() {
+		$this->setPage($this->telegram_id, "detail");
 		$options = [
-			[$this->telegram->buildKeyboardButton("Value 1")],
-			[$this->telegram->buildKeyboardButton("Value 2")],
-			[$this->telegram->buildKeyboardButton("Value 3")],
 			[$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")]
 		];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
-			"text" => "Quyidagilardan birini tanlang!",
-			"reply_markup" => $keyb
+			"text" => "ℹ️ Diqqat! Bu bot ayni paytda test bosqichida. To‘liq versiya tez orada ishga tushadi.Siz bu bot orqali mahsulotlar buyurtma bera olasiz",
+		]);
+		$this->telegram->sendMessage([
+			"chat_id" => $this->chat_id,
+			"text" => "Ortga qaytish uchun ortga qaytish tugmasini bosing!",
+			"reply_markup" => $keyb			
 		]);
 	}
 
@@ -73,7 +74,7 @@ class Pages extends Functions
 			"chat_id" => $this->chat_id,
 			"text" => "Telefon raqamingizni yozing",
 			"reply_markup" => $keyb
-		]);	
+		]);
 	}
 
 	public function userPhoneNumber() {

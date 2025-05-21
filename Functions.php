@@ -36,7 +36,7 @@ class Functions
 
 	public function back($page) {
 		switch ($page) {
-			case "button1":
+			case "detail":
 			case "button2":
 				$this->home();
 				break;
