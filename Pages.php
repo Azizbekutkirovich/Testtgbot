@@ -67,6 +67,7 @@ class Pages extends Functions
 			$price = $d['price'];
 			$options[] = [$this->telegram->buildKeyboardButton("$name $price")];
 		}
+		$options[] = [$this->telegram->buildKeyboardButton("🔙 Ortga qaytish")];
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$this->telegram->sendMessage([
 			"chat_id" => $this->chat_id,
