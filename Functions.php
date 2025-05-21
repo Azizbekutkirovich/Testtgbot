@@ -36,7 +36,7 @@ class Functions
 
 	public function getProducts() {
 		$query = $this->db->query("SELECT * FROM products");
-		$data = $query->fetch(PDO::FETCH_ASSOC);
+		$data = $query->fetchAll(PDO::FETCH_ASSOC);
 		return $data;
 	}
 

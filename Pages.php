@@ -65,7 +65,7 @@ class Pages extends Functions
 		foreach ($data as $d) {
 			$name = $d['product_name'];
 			$price = $d['price'];
-			$options[][] = $this->telegram->buildKeyboardButton("$name $price");
+			$options[] = [$this->telegram->buildKeyboardButton("$name $price")];
 		}
 		$keyb = $this->telegram->buildKeyBoard($options, true, true);
 		$this->telegram->sendMessage([
