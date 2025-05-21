@@ -34,10 +34,16 @@ class Functions
 		return $data['page'];
 	}
 
+	public function getProducts() {
+		$query = $this->db->query("SELECT * FROM products");
+		$data = $query->fetch(PDO::FETCH_ASSOC);
+		return $data;
+	}
+
 	public function back($page) {
 		switch ($page) {
 			case "detail":
-			case "button2":
+			case "zakaz":
 				$this->home();
 				break;
 			case "getPhoneNumber":

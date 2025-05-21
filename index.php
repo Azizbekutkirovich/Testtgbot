@@ -38,7 +38,7 @@ $bot_pages = [
 			"arg" => ""
 		],
 		"🛒 Buyurtma berish" => [
-			"method" => "button2",
+			"method" => "zakaz",
 			"arg" => ""
 		]
 	],

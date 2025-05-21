@@ -58,8 +58,21 @@ class Pages extends Functions
 		]);
 	}
 
-	public function button2() {
-
+	public function zakaz() {
+		$this->setPage($this->telegram_id, "zakaz");
+		$data = $this->getProducts();
+		$options = [];
+		foreach ($data as $d) {
+			$name = $d['product_name'];
+			$price = $d['price'];
+			$options[][] = $this->telegram->buildKeyboardButton("$name $price");
+		}
+		$keyb = $this->telegram->buildKeyBoard($options, true, true);
+		$this->telegram->sendMessage([
+			"chat_id" => $this->chat_id,
+			"text" => "Mahsulotlardan birini tanlang va buyurtma berish uchun o'sha mahsulot ustiga bosing!",
+			"reply_markup" => $keyb
+		]);
 	}
 
 	public function getPhoneNumber($value) {
